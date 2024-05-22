@@ -1,10 +1,10 @@
 export class Vehicle {
-    // private model: string;
+    private model: string;
     private price: number;
     private sold: number;
   
-    constructor(private model: string, price: number) {
-      // this.model = model;
+    constructor(model: string, price: number) {
+      this.model = model;
       this.price = price;
       this.sold = 0; 
     }
