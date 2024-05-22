@@ -1,0 +1,89 @@
+[
+    {
+      "brand": "Toyota",
+      "model": "Camry",
+      "doors": 4,
+      "price": 25000,
+      "sold": 8
+    },
+    {
+      "brand": "Honda",
+      "model": "Civic",
+      "doors": 4,
+      "price": 18000,
+      "sold": 9
+    },
+    {
+      "brand": "Ford",
+      "model": "F-150",
+      "doors": 4,
+      "isHybrid": false,
+      "price": 35000,
+      "sold": 5
+    },
+    {
+      "brand": "Chevrolet",
+      "model": "Silverado",
+      "doors": 4,
+      "isHybrid": true,
+      "price": 40000,
+      "sold": 3
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model 3",
+      "doors": 4,
+      "isHybrid": false,
+      "price": 50000,
+      "sold": 2
+    },
+    {
+      "brand": "Nissan",
+      "model": "Sentra",
+      "doors": 4,
+      "price": 15000,
+      "sold": 7
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Elantra",
+      "doors": 4,
+      "price": 20000,
+      "sold": 6
+    },
+    {
+      "brand": "Kia",
+      "model": "Optima",
+      "doors": 5,
+      "price": 22000,
+      "sold": 4
+    },
+    {
+      "brand": "Subaru",
+      "model": "Impreza",
+      "doors": 5,
+      "price": 23000,
+      "sold": 1
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "Jetta",
+      "doors": 4,
+      "price": 19000,
+      "sold": 8
+    },
+    {
+      "brand": "BMW",
+      "model": "X5",
+      "doors": 5,
+      "price": 60000,
+      "sold": 2
+    },
+    {
+      "brand": "Audi",
+      "model": "A4",
+      "doors": 4,
+      "price": 30000,
+      "sold": 5
+    }
+  ]
