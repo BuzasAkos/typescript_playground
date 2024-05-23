@@ -13,10 +13,14 @@ function primitives(): string {
     console.log(alfa, beta, gamma, delta);
     console.log(alfa === 42, delta !== 99);
 
+    console.log(beta.split('')[1]);
+    console.log(beta.slice(-3));
+    console.log(beta.substring(0,4));
+
     return beta;
 }
 
-// console.log( primitives() );
+primitives();
 
 
 // tömbök definiálása, módosítása
@@ -193,4 +197,4 @@ function useVehicleClass() {
     console.log('Revenue:', vehicle.reportRevenue());
 }
 
-useVehicleClass();
+// useVehicleClass();
