@@ -6,7 +6,7 @@ npx tsc --init
 # start script (package.json):
 ts-node src/practice.ts
 
-# github repo klónozása esetén futtatandó:
+# github repo klónozása vagy zip letöltése esetén futtatandó:
 npm install
 npm start
 
