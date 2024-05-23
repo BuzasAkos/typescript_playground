@@ -155,8 +155,6 @@ const dataOperations = () => {
     });
     console.table(revenues);
 
-    
-
     // összes eladott autó
     const totalVolume = revenues.reduce((prev, car) => prev + (car.sold || 0), 0);    
     console.log('total Volume:',totalVolume);
