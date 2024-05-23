@@ -33,7 +33,7 @@
       "brand": "Tesla",
       "model": "Model 3",
       "doors": 4,
-      "isHybrid": false,
+      "isHybrid": true,
       "price": 50000,
       "sold": 2
     },

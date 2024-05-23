@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
-import { Vehicle } from "./vehicle.class";
+import { Car } from "./models/car.interface";
+import { Vehicle } from "./models/vehicle.class";
 
 
 // alap típusok
@@ -20,7 +21,7 @@ function primitives(): string {
     return beta;
 }
 
-primitives();
+// primitives();
 
 
 // tömbök definiálása, módosítása
@@ -86,17 +87,7 @@ const arrayOps = () => {
 // arrayOps();
 
 
-// interface-ek, js objektumok definiálása
-
-interface Car {
-    brand: string,
-    model: string,
-    doors: number,
-    isHybrid?: boolean,      // opcionális
-    price?: number,          // opcionális
-    sold?: number            // opcionális
-}
-
+// js objektumok, interface-ek használata
 function jsObjects() {
     const myFirstCar: Car = {
         brand: 'Toyota',
@@ -155,7 +146,7 @@ const dataOperations = () => {
     console.table(fiveDoorCars);
 
     // bevétel oszlop hozzáadása
-    const revenues = cars.map((car) => {
+    let revenues = cars.map((car) => {
         if (!car.price || !car.sold) {
             return {...car, revenue: 0};                     // revenue=0 beszúrása ha nincs ár vagy darab, majd return!
         }
@@ -164,21 +155,60 @@ const dataOperations = () => {
     });
     console.table(revenues);
 
+    
+
     // összes eladott autó
-    const totalVolume = revenues.reduce((acc, car) => acc + (car.sold || 0), 0);    
+    const totalVolume = revenues.reduce((prev, car) => prev + (car.sold || 0), 0);    
     console.log('total Volume:',totalVolume);
 
-    // hybrid autók össz bevétele:
-    let hybridRevenue = revenues.reduce((acc, car) => {
-        return car.isHybrid ? acc + car.revenue : acc;              // ternary operator!
+    // legdrágább autó ára
+    const highestPrice = revenues.reduce((prev, car) => {
+        return car.price! > prev ? car.price! : prev                // ternary operator
+    }, 0);        
+    console.log('lowest price:', highestPrice);
+
+    // hybrid autók össz bevétele - old school módszer:
+    let hybridRevenue = 0; 
+    revenues.forEach( item => {
+        if (item.isHybrid) {
+            hybridRevenue += item.revenue;
+        }
+    })
+
+    // csak a reduce függvény használatával:
+    hybridRevenue = revenues.reduce((prev, car) => {
+        return car.isHybrid ? prev + car.revenue : prev;              
     }, 0);
 
-    // másképp:                                                  
+    // filter és reduce kombinálásával:                                                  
     hybridRevenue = revenues
         .filter((car) => car.isHybrid)
-        .reduce((acc, car) => acc + car.revenue, 0);                // chaining
+        .reduce((prev, car) => prev + car.revenue, 0);                // chaining
     
     console.log('hybrid Revenue:',hybridRevenue);
+
+    
+    // Category MAPPING:
+    const brandCategories = [
+        {brand: 'Audi', category: 'premium'},
+        {brand: 'BMW', category: 'premium'},
+        {brand: 'Tesla', category: 'luxury'}
+    ]
+
+    // LEFT JOIN: Category oszlop hozzáadása a revenue táblához
+    let revenuesWithCat = revenues.map((car) => {
+        const categoryFound = brandCategories.find(bc => bc.brand === car.brand)?.category;
+        return {...car, category: categoryFound || 'standard'}
+    });
+    console.table(revenuesWithCat);
+
+    // GROUP BY category:
+    let revByCategories = revenuesWithCat.reduce((prev, car) => {
+        const record = prev.find(item => item.category === car.category);
+        record ? record.subtotal += car.revenue : prev.push ({ category: car.category, subtotal: car.revenue });
+        return prev;
+      }, [] as { category: string; subtotal: number }[]);
+    console.table(revByCategories);
 } 
 
 // dataOperations();
@@ -186,10 +216,10 @@ const dataOperations = () => {
 
 // ts classes
 function useVehicleClass() {
-    const vehicle = new Vehicle('Skoda Superb', 50000);             // instantiation (példányosítás)
-    console.log(typeof vehicle);
+    const vehicle = new Vehicle('Skoda', 'Superb', 5, 50000);             // instantiation (példányosítás)
+    console.log('type:', typeof vehicle);
 
-    console.log('Model:', vehicle.getModel(), 'Price:', vehicle.getPrice());
+    console.log('Model:', vehicle.model, 'Price:', vehicle.getPrice());
 
     vehicle.setPrice(45000);
     vehicle.sales(2);
@@ -197,4 +227,4 @@ function useVehicleClass() {
     console.log('Revenue:', vehicle.reportRevenue());
 }
 
-// useVehicleClass();
+useVehicleClass();
