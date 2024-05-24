@@ -232,4 +232,4 @@ function useVehicleClass() {
     console.log('Revenue:', vehicle.reportRevenue());
 }
 
-useVehicleClass();
+// useVehicleClass();
