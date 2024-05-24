@@ -21,7 +21,7 @@ function primitives(): string {
     return beta;
 }
 
-// primitives();
+// console.log(primitives());
 
 
 // tömbök definiálása, módosítása
@@ -67,11 +67,17 @@ const arrayOps = () => {
     const slicedArray = concatArray.slice(3, 8);          // szeletelés, mint pythonban [3:8]
     console.log('slice:', slicedArray);
 
-    const filteredArray = slicedArray.filter(item => item % 2 === 0);   // szűrés függvény segítségével
+    const filteredArray = slicedArray.filter((item) => item % 2 === 0);   // szűrés függvény segítségével
     console.log('filter:', filteredArray);
 
-    const total = slicedArray.reduce((a,b) => a + b);      // összegzés függvény segítségével
+    const total = slicedArray.reduce((prev,current) => prev + current, 0);      // összegzés függvény segítségével
     console.log('slice total:', total);
+
+    let sum = 0;
+    slicedArray.forEach(item => {
+        sum += item;
+    });
+    console.log(sum);
 
     slicedArray.sort((a,b) => a - b );                    // rendezés függvénnyel, in-place!
     console.log('sorted:', slicedArray);
@@ -119,8 +125,9 @@ function jsObjects() {
 
     console.log(cars);
 
-    let { brand, model } = cars[2];         // object destruction
-    console.log(brand, model);
+    let { brand, model, isHybrid } = cars[2];         // object destruction
+
+    console.log(brand, model, isHybrid);
 
     model = 'Panamera';
     let doors = 5;
@@ -163,7 +170,7 @@ const dataOperations = () => {
     const highestPrice = revenues.reduce((prev, car) => {
         return car.price! > prev ? car.price! : prev                // ternary operator
     }, 0);        
-    console.log('lowest price:', highestPrice);
+    console.log('highest price:', highestPrice);
 
     // hybrid autók össz bevétele - old school módszer:
     let hybridRevenue = 0; 
